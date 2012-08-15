@@ -107,6 +107,61 @@ public class Generator {
 
     public static Lgtrynb generateLgtrynb() {
         Lgtrynb l = new Lgtrynb();
+        l.setZklsh(RandomStringUtils.randomAlphabetic(22));
+        l.setXm(RandomStringUtils.randomAlphabetic(30));
+        l.setXb(ran.nextInt(0, 1));
+        l.setMz(RandomStringUtils.randomAlphabetic(2));
+        l.setCsrq(RandomStringUtils.randomAlphabetic(8));
+        l.setZjlx(RandomStringUtils.randomAlphabetic(2));
+
+
+
+        while (gmsfhm % 2 != 0) {
+            gmsfhm = gmsfhm + 1;
+        }
+        l.setZjhm(String.valueOf(gmsfhm++));
+
+
+
+        l.setJg(RandomStringUtils.randomAlphabetic(6));
+        l.setZz(RandomStringUtils.randomAlphabetic(40));
+        l.setLcsy(RandomStringUtils.randomAlphabetic(2));
+        l.setFh(RandomStringUtils.randomAlphabetic(10));
+        l.setRzsj(RandomStringUtils.randomAlphabetic(14));
+        l.setLdsj(RandomStringUtils.randomAlphabetic(14));
+        l.setSsxq(RandomStringUtils.randomAlphabetic(12));
+        l.setXh(RandomStringUtils.randomAlphabetic(18));
+        l.setDjr(RandomStringUtils.randomAlphabetic(30));
+        l.setZy(RandomStringUtils.randomAlphabetic(2));
+        l.setHcl(RandomStringUtils.randomAlphabetic(6));
+        l.setHcq(RandomStringUtils.randomAlphabetic(6));
+        l.setXyklx(RandomStringUtils.randomAlphabetic(10));
+        l.setXykhm(RandomStringUtils.randomAlphabetic(19));
+        l.setXmpy(RandomStringUtils.randomAlphabetic(80));
+        l.setXpy1(RandomStringUtils.randomAlphabetic(6));
+        l.setXpy2(RandomStringUtils.randomAlphabetic(6));
+        l.setM1py1(RandomStringUtils.randomAlphabetic(6));
+        l.setM1py2(RandomStringUtils.randomAlphabetic(6));
+        l.setM2py1(RandomStringUtils.randomAlphabetic(6));
+        l.setM2py2(RandomStringUtils.randomAlphabetic(6));
+        l.setCssj(RandomStringUtils.randomAlphabetic(14));
+        l.setLkcl(RandomStringUtils.randomAlphabetic(32));
+        l.setLkblzd1(RandomStringUtils.randomAlphabetic(32));
+        l.setLkblzd2(RandomStringUtils.randomAlphabetic(32));
+        l.setLkblzd3(RandomStringUtils.randomAlphabetic(32));
+        l.setLkblzd4(RandomStringUtils.randomAlphabetic(32));
+        l.setLkzt(ran.nextInt(0, 1));
+        l.setBz(RandomStringUtils.randomAlphabetic(250));
+        l.setGlm(RandomStringUtils.randomAlphabetic(13));
+        l.setCjr(RandomStringUtils.randomAlphabetic(30));
+        l.setCjrip(RandomStringUtils.randomAlphabetic(30));
+        l.setCjsj(RandomStringUtils.randomAlphabetic(14));
+        l.setXgr(RandomStringUtils.randomAlphabetic(30));
+        l.setXgrip(RandomStringUtils.randomAlphabetic(30));
+        l.setXgsj(RandomStringUtils.randomAlphabetic(14));
+        l.setFsbz(ran.nextInt(0, 1));
+        l.setClbz(ran.nextInt(0, 1));
+        l.setLgdm(RandomStringUtils.randomAlphabetic(30));
         return l;
     }
 

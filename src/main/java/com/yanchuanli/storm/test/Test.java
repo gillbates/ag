@@ -9,6 +9,7 @@ import com.yanchuanli.storm.concurrent.ComputeThread;
 import com.yanchuanli.storm.db.GADao;
 import com.yanchuanli.storm.db.UserDao;
 import com.yanchuanli.storm.model.Czrk;
+import com.yanchuanli.storm.model.Lgtrynb;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
@@ -56,7 +57,18 @@ public class Test {
 //        multiThreadedCheck();
 
 //        testRefelection();
-        insertCzrk();
+//        insertCzrk();
+
+
+        for (int j = 0; j < 10; j++) {
+            Lgtrynb l = Generator.generateLgtrynb();
+            log.info(l.getZjhm());
+        }
+
+        for (int i = 0; i < 10; i++) {
+            Czrk c=Generator.generateCzrk();
+            log.info(c.getGmsfhm());
+        }
 
     }
 
