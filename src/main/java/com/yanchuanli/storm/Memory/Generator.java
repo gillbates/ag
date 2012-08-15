@@ -1,6 +1,7 @@
 package com.yanchuanli.storm.Memory;
 
 import com.yanchuanli.storm.model.Czrk;
+import com.yanchuanli.storm.model.Lgtrynb;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.math.random.RandomData;
 import org.apache.commons.math.random.RandomDataImpl;
@@ -103,6 +104,12 @@ public class Generator {
         c.setCxbz(ran.nextInt(0, 9));
         return c;
     }
+
+    public static Lgtrynb generateLgtrynb() {
+        Lgtrynb l = new Lgtrynb();
+        return l;
+    }
+
 
     private static long generate19DigitsLong() {
         return ran.nextLong(1111111111111111111L, 9223372036854775807L);
