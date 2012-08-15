@@ -58,19 +58,22 @@ public class Test {
 
 //        testRefelection();
 //        insertCzrk();
-
-
-        for (int j = 0; j < 10; j++) {
-            Lgtrynb l = Generator.generateLgtrynb();
-            log.info(l.getZjhm());
-        }
-
-        for (int i = 0; i < 10; i++) {
-            Czrk c=Generator.generateCzrk();
-            log.info(c.getGmsfhm());
-        }
+          insertLgtrynb();
 
     }
+
+    public static void insertLgtrynb() {
+        List<Lgtrynb> list = new ArrayList<>();
+        for (int i = 0; i < 20000000; i++) {
+            list.add(Generator.generateLgtrynb());
+            if (i % 1000 == 0) {
+                GADao.insertLgtrynb(list);
+                list.clear();
+                log.info(String.valueOf(i / 1000) + "/20000");
+            }
+        }
+    }
+
 
     public static void insertCzrk() {
         List<Czrk> list = new ArrayList<>();

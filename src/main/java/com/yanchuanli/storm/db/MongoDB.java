@@ -9,6 +9,7 @@ public class MongoDB {
 	public static final String DBNAME = "barbarossa";
 	public static final String COLL_USER = "user";
     public static final String COLL_CZRK = "czrk";
+    public static final String COLL_Lgtrynb = "lgtrynb";
     public static final String SOURCE_USER = "sourceuser";
 	public static final String COLL_ROOM = "room";
 	public static final String COLL_ACTIVITY = "activity";
