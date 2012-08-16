@@ -106,23 +106,50 @@ public class Test {
 
     public static void multiThreadedCheck() {
         log.info("started ...");
-        Set<String> users = GADao.getLgtrynbs();
-        log.info(users.size() + " zjhm found ...");
-        Util.setUsers(users);
-        ExecutorService pool = Executors.newFixedThreadPool(5);
-        long czrkCount = GADao.gerCzrkCount();
 
-        int pageNum = (int) Math.ceil((double) czrkCount / (double) Conf.PAGESIZE);
-        log.info("processing " + czrkCount + " Czrks in " + pageNum);
-        for (int i = 1; i <= pageNum; i++) {
-            ComputeThread ct = new ComputeThread(i, pageNum);
-            pool.submit(ct);
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+        long czrkCount = GADao.gerCzrkCount();
+        long lgtrynbCount = GADao.gerLgtrynbCount();
+
+
+        ExecutorService pool;
+        if (czrkCount <= lgtrynbCount) {
+            Set<String> users = GADao.getCzrks();
+            log.info(users.size() + " czrk found ...");
+            Util.setUsers(users);
+            int pageNum = (int) Math.ceil((double) lgtrynbCount / (double) Conf.PAGESIZE);
+            pool = Executors.newFixedThreadPool(20);
+            log.info("processing " + lgtrynbCount + " Lgtrynb in " + pageNum);
+            for (int i = 1; i <= pageNum; i++) {
+                ComputeThread ct = new ComputeThread(i, pageNum);
+                pool.submit(ct);
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            Set<String> users = GADao.getLgtrynbs();
+            log.info(users.size() + " zjhm found ...");
+            Util.setUsers(users);
+
+
+            int pageNum = (int) Math.ceil((double) czrkCount / (double) Conf.PAGESIZE);
+            pool = Executors.newFixedThreadPool(pageNum);
+            log.info("processing " + czrkCount + " Czrks in " + pageNum);
+            for (int i = 1; i <= pageNum; i++) {
+                ComputeThread ct = new ComputeThread(i, pageNum);
+                pool.submit(ct);
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
+
         pool.shutdown();
 
     }
