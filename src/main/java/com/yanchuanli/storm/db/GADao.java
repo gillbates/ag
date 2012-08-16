@@ -160,7 +160,10 @@ public class GADao {
         DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
                 MongoDB.COLL_CZRK);
 
-        DBCursor cur = coll.find(new BasicDBObject("gmsfhm", 1)).skip((pageNow - 1) * pageSize).limit(pageSize);
+        BasicDBObject query = new BasicDBObject();
+        BasicDBObject key = new BasicDBObject("gmsfhm", 1);
+
+        DBCursor cur = coll.find(query, key).skip((pageNow - 1) * pageSize).limit(pageSize);
         while (cur.hasNext()) {
             DBObject obj = cur.next();
             users.add((String) obj.get("gmsfhm"));
