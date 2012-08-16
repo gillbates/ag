@@ -67,16 +67,9 @@ public class Test {
 
 
     public static void compareThreadedLoading() {
-        Set<String> data1 = GADao.getCzrkWithSingleThread();
-        log.info(data1.size() + " czrk loaded ...");
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
-        elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
-        log.info(elapsedTime + " milli passed ...");
+        log.info("started ...");
 
-        data1.clear();
-        startTime = System.nanoTime();
-        data1 = GADao.getCzrksWithMultithread();
+        Set<String> data1 = GADao.getCzrksWithMultithread();
         log.info(data1.size() + " czrk loaded ...");
 
     }
