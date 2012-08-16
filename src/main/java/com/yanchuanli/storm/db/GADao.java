@@ -38,6 +38,23 @@ public class GADao {
         return users;
     }
 
+    public static Set<String> getCzrks() {
+            Set<String> users = new HashSet<>();
+            DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
+                    MongoDB.COLL_CZRK);
+
+            BasicDBObject query = new BasicDBObject();
+            BasicDBObject key = new BasicDBObject("gmsfhm", 1);
+
+            DBCursor cur = coll.find(query, key);
+
+            while (cur.hasNext()) {
+                DBObject obj = cur.next();
+                users.add((String) obj.get("gmsfhm"));
+            }
+            return users;
+        }
+
     public static void insertLgtrynb(List<Lgtrynb> list) {
 
         DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
@@ -122,10 +139,30 @@ public class GADao {
         return users;
     }
 
+    public static Set<String> queryLgtrynb(int pageNow, int pageSize) {
+        Set<String> users = new HashSet<>();
+
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
+                MongoDB.COLL_Lgtrynb);
+
+        DBCursor cur = coll.find(new BasicDBObject()).skip((pageNow - 1) * pageSize).limit(pageSize);
+        while (cur.hasNext()) {
+            DBObject obj = cur.next();
+            users.add((String) obj.get("zjhm"));
+        }
+        return users;
+    }
 
     public static long gerCzrkCount() {
         long result = 0;
         DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME, MongoDB.COLL_CZRK);
+        result = coll.getCount();
+        return result;
+    }
+
+    public static long gerLgtrynbCount() {
+        long result = 0;
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME, MongoDB.COLL_Lgtrynb);
         result = coll.getCount();
         return result;
     }
