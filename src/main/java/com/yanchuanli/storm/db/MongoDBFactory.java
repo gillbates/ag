@@ -26,7 +26,7 @@ public class MongoDBFactory {
                 }
                 mongo = new Mongo(addr);
                 mongo.setReadPreference(ReadPreference.SECONDARY);
-//                mongo.setWriteConcern(WriteConcern.REPLICAS_SAFE);
+                mongo.setWriteConcern(WriteConcern.REPLICAS_SAFE);
             } catch (UnknownHostException | MongoException e) {
                 logger.error(e);
             }
