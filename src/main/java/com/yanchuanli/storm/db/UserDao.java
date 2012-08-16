@@ -54,6 +54,9 @@ public class UserDao {
         return users;
     }
 
+
+
+
     public static List<User> getUsers() {
         List<User> users = new ArrayList<>();
         DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
@@ -135,4 +138,5 @@ public class UserDao {
         result = coll.getCount();
         return result;
     }
+
 }

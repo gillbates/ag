@@ -107,4 +107,26 @@ public class GADao {
         coll.insert(doc);
 
     }
+
+    public static Set<String> queryCzrk(int pageNow, int pageSize) {
+        Set<String> users = new HashSet<>();
+
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
+                MongoDB.COLL_CZRK);
+
+        DBCursor cur = coll.find(new BasicDBObject()).skip((pageNow - 1) * pageSize).limit(pageSize);
+        while (cur.hasNext()) {
+            DBObject obj = cur.next();
+            users.add((String) obj.get("gmsfhm"));
+        }
+        return users;
+    }
+
+
+    public static long gerCzrkCount() {
+        long result = 0;
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME, MongoDB.COLL_CZRK);
+        result = coll.getCount();
+        return result;
+    }
 }

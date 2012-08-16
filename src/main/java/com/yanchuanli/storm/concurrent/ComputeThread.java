@@ -3,7 +3,7 @@ package com.yanchuanli.storm.concurrent;
 import com.google.common.collect.Sets;
 import com.yanchuanli.storm.Memory.Conf;
 import com.yanchuanli.storm.Memory.Util;
-import com.yanchuanli.storm.db.UserDao;
+import com.yanchuanli.storm.db.GADao;
 import org.apache.log4j.Logger;
 
 import java.util.Set;
@@ -28,7 +28,7 @@ public class ComputeThread implements Runnable {
     @Override
     public void run() {
 //        log.info("processing page:" + pageNum + "/" + totalPageCount);
-        Set<String> data = UserDao.querySourceUser(pageNum, Conf.PAGESIZE);
+        Set<String> data = GADao.queryCzrk(pageNum, Conf.PAGESIZE);
 //        log.info(data.size() + " data loaded in page " + pageNum);
         Set<String> result = Sets.intersection(data, Util.getUsers());
         Util.addSet(result);

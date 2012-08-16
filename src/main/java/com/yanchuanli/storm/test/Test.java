@@ -5,6 +5,7 @@ import com.yanchuanli.storm.Memory.Conf;
 import com.yanchuanli.storm.Memory.Generator;
 import com.yanchuanli.storm.Memory.Util;
 import com.yanchuanli.storm.concurrent.CheckInterSectionTask;
+import com.yanchuanli.storm.concurrent.ComputeThread;
 import com.yanchuanli.storm.db.GADao;
 import com.yanchuanli.storm.db.UserDao;
 import com.yanchuanli.storm.model.Czrk;
@@ -15,9 +16,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Copyright Candou.com
@@ -64,8 +63,6 @@ public class Test {
     }
 
 
-
-
     public static void insertLgtrynb() {
         List<Lgtrynb> list = new ArrayList<>();
         for (int i = 0; i < 20000000; i++) {
@@ -110,13 +107,13 @@ public class Test {
     public static void multiThreadedCheck() {
         log.info("started ...");
         Set<String> users = GADao.getLgtrynbs();
-        log.info(users.size()+" zjhm found ...");
-        /*
-        log.info(users.size() + " users loaded ...");
+        log.info(users.size() + " zjhm found ...");
         Util.setUsers(users);
-        ExecutorService pool = Executors.newFixedThreadPool(3);
-        long srcUserCount = UserDao.gerSourceUsersCount();
-        int pageNum = (int) Math.ceil((double) srcUserCount / (double) Conf.PAGESIZE);
+        ExecutorService pool = Executors.newFixedThreadPool(5);
+        long czrkCount = GADao.gerCzrkCount();
+
+        int pageNum = (int) Math.ceil((double) czrkCount / (double) Conf.PAGESIZE);
+        log.info("processing " + czrkCount + " Czrks in " + pageNum);
         for (int i = 1; i <= pageNum; i++) {
             ComputeThread ct = new ComputeThread(i, pageNum);
             pool.submit(ct);
@@ -127,7 +124,7 @@ public class Test {
             }
         }
         pool.shutdown();
-        */
+
     }
 
     public static void forkJoinCheck() {
