@@ -1,6 +1,5 @@
 package com.yanchuanli.storm.concurrent;
 
-import com.google.common.collect.Sets;
 import com.yanchuanli.storm.Memory.Conf;
 import com.yanchuanli.storm.Memory.Util;
 import com.yanchuanli.storm.db.GADao;
@@ -30,7 +29,7 @@ public class ComputeThread implements Runnable {
         log.info("processing page:" + pageNum + "/" + totalPageCount);
         Set<String> data = GADao.queryLgtrynb(pageNum, Conf.PAGESIZE);
         log.info(data.size() + " data loaded in page " + pageNum);
-        Set<String> result = Sets.intersection(data, Util.getUsers());
+        Set<String> result = Util.getInterSection(data,Util.getUsers());
         Util.addSet(result);
         log.info("page " + pageNum + " finished processing with " + result.size() + " data matched ...");
     }
