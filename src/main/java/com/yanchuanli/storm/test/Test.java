@@ -5,7 +5,6 @@ import com.yanchuanli.storm.Memory.Conf;
 import com.yanchuanli.storm.Memory.Generator;
 import com.yanchuanli.storm.Memory.Util;
 import com.yanchuanli.storm.concurrent.CheckInterSectionTask;
-import com.yanchuanli.storm.concurrent.ComputeThread;
 import com.yanchuanli.storm.db.GADao;
 import com.yanchuanli.storm.db.UserDao;
 import com.yanchuanli.storm.model.Czrk;
@@ -16,7 +15,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Copyright Candou.com
@@ -54,13 +55,16 @@ public class Test {
 //        sequentialCheck();
 //        insertUsers();
 //        insertSourceUsers();
-//        multiThreadedCheck();
+        multiThreadedCheck();
 
 //        testRefelection();
 //        insertCzrk();
-          insertLgtrynb();
+//          insertLgtrynb();
 
     }
+
+
+
 
     public static void insertLgtrynb() {
         List<Lgtrynb> list = new ArrayList<>();
@@ -105,7 +109,9 @@ public class Test {
 
     public static void multiThreadedCheck() {
         log.info("started ...");
-        Set<String> users = UserDao.getUserSet();
+        Set<String> users = GADao.getLgtrynbs();
+        log.info(users.size()+" zjhm found ...");
+        /*
         log.info(users.size() + " users loaded ...");
         Util.setUsers(users);
         ExecutorService pool = Executors.newFixedThreadPool(3);
@@ -121,6 +127,7 @@ public class Test {
             }
         }
         pool.shutdown();
+        */
     }
 
     public static void forkJoinCheck() {

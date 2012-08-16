@@ -2,13 +2,16 @@ package com.yanchuanli.storm.db;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.yanchuanli.storm.model.Czrk;
 import com.yanchuanli.storm.model.Lgtrynb;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Copyright Candou.com
@@ -17,6 +20,23 @@ import java.util.List;
  * Date: 12-8-15
  */
 public class GADao {
+
+    public static Set<String> getLgtrynbs() {
+        Set<String> users = new HashSet<>();
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
+                MongoDB.COLL_Lgtrynb);
+
+        BasicDBObject query = new BasicDBObject();
+        BasicDBObject key = new BasicDBObject("zjhm", 1);
+
+        DBCursor cur = coll.find(query, key);
+
+        while (cur.hasNext()) {
+            DBObject obj = cur.next();
+            users.add((String) obj.get("zjhm"));
+        }
+        return users;
+    }
 
     public static void insertLgtrynb(List<Lgtrynb> list) {
 
