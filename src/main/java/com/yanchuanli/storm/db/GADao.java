@@ -4,6 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.yanchuanli.storm.Memory.Conf;
 import com.yanchuanli.storm.model.Czrk;
 import com.yanchuanli.storm.model.Lgtrynb;
 
@@ -39,21 +40,24 @@ public class GADao {
     }
 
     public static Set<String> getCzrks() {
-            Set<String> users = new HashSet<>();
-            DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
-                    MongoDB.COLL_CZRK);
+        long count = gerCzrkCount();
+        int pageNum = (int) Math.ceil((double) count / (double) Conf.PAGESIZE);
+//                  pool = Executors.newFixedThreadPool(20);
+        Set<String> users = new HashSet<>();
+        DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
+                MongoDB.COLL_CZRK);
 
-            BasicDBObject query = new BasicDBObject();
-            BasicDBObject key = new BasicDBObject("gmsfhm", 1);
+        BasicDBObject query = new BasicDBObject();
+        BasicDBObject key = new BasicDBObject("gmsfhm", 1);
 
-            DBCursor cur = coll.find(query, key);
+        DBCursor cur = coll.find(query, key);
 
-            while (cur.hasNext()) {
-                DBObject obj = cur.next();
-                users.add((String) obj.get("gmsfhm"));
-            }
-            return users;
+        while (cur.hasNext()) {
+            DBObject obj = cur.next();
+            users.add((String) obj.get("gmsfhm"));
         }
+        return users;
+    }
 
     public static void insertLgtrynb(List<Lgtrynb> list) {
 
