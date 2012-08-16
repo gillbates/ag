@@ -19,7 +19,7 @@ public class MongoDBFactory {
     public static Mongo getMongo() {
         if (mongo == null) {
             try {
-                String url = "192.168.7.41:27017,192.168.7.44:27017";
+                String url = "192.168.7.47:30000";
                 ArrayList<ServerAddress> addr = new ArrayList<ServerAddress>();
                 for (String s : url.split(",")) {
                     addr.add(new ServerAddress(s));
