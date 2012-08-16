@@ -117,10 +117,8 @@ public class Test {
             Set<String> users = GADao.getCzrks();
             log.info(users.size() + " czrk found ...");
             Util.setUsers(users);
-
-
             int pageNum = (int) Math.ceil((double) lgtrynbCount / (double) Conf.PAGESIZE);
-            pool = Executors.newFixedThreadPool(pageNum);
+            pool = Executors.newFixedThreadPool(20);
             log.info("processing " + lgtrynbCount + " Lgtrynb in " + pageNum);
             for (int i = 1; i <= pageNum; i++) {
                 ComputeThread ct = new ComputeThread(i, pageNum);
