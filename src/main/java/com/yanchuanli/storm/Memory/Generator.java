@@ -1,4 +1,4 @@
-package com.yanchuanli.storm.Memory;
+package com.yanchuanli.storm.memory;
 
 import com.yanchuanli.storm.model.Czrk;
 import com.yanchuanli.storm.model.Lgtrynb;

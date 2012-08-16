@@ -1,8 +1,8 @@
 package com.yanchuanli.storm.concurrent;
 
 import com.google.common.collect.Sets;
-import com.yanchuanli.storm.Memory.Conf;
-import com.yanchuanli.storm.Memory.Util;
+import com.yanchuanli.storm.memory.Conf;
+import com.yanchuanli.storm.memory.Util;
 import com.yanchuanli.storm.db.UserDao;
 import org.apache.log4j.Logger;
 

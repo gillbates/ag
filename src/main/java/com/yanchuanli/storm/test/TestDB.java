@@ -4,7 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.yanchuanli.storm.Memory.Conf;
+import com.yanchuanli.storm.memory.Conf;
 import com.yanchuanli.storm.db.MongoDB;
 import com.yanchuanli.storm.db.MongoDBFactory;
 import com.yanchuanli.storm.db.UserDao;

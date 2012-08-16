@@ -1,9 +1,9 @@
 package com.yanchuanli.storm.test;
 
 import com.google.common.collect.Sets;
-import com.yanchuanli.storm.Memory.Conf;
-import com.yanchuanli.storm.Memory.Generator;
-import com.yanchuanli.storm.Memory.Util;
+import com.yanchuanli.storm.memory.Conf;
+import com.yanchuanli.storm.memory.Generator;
+import com.yanchuanli.storm.memory.Util;
 import com.yanchuanli.storm.concurrent.CheckInterSectionTask;
 import com.yanchuanli.storm.concurrent.ComputeThread;
 import com.yanchuanli.storm.db.GADao;

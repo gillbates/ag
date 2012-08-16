@@ -1,4 +1,4 @@
-package com.yanchuanli.storm.Memory;
+package com.yanchuanli.storm.memory;
 
 import java.util.HashSet;
 import java.util.Set;
