@@ -50,15 +50,34 @@ public class Test {
 //        insertSourceUsers();
 
         startTime = System.nanoTime();
+
+
 //        forkJoinCheck();
 //        sequentialCheck();
 //        insertUsers();
 //        insertSourceUsers();
-        multiThreadedCheck();
+//        multiThreadedCheck();
 
 //        testRefelection();
 //        insertCzrk();
 //          insertLgtrynb();
+
+        compareThreadedLoading();
+    }
+
+
+    public static void compareThreadedLoading() {
+        Set<String> data1 = GADao.getCzrkWithSingleThread();
+        log.info(data1.size() + " czrk loaded ...");
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+        elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
+        log.info(elapsedTime + " milli passed ...");
+
+        data1.clear();
+        startTime = System.nanoTime();
+        data1 = GADao.getCzrksWithMultithread();
+        log.info(data1.size() + " czrk loaded ...");
 
     }
 
@@ -114,7 +133,7 @@ public class Test {
 
         ExecutorService pool;
         if (czrkCount <= lgtrynbCount) {
-            Set<String> users = GADao.getCzrks();
+            Set<String> users = GADao.getCzrksWithMultithread();
             log.info(users.size() + " czrk found ...");
             Util.setUsers(users);
             int pageNum = (int) Math.ceil((double) lgtrynbCount / (double) Conf.PAGESIZE);

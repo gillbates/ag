@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Copyright Candou.com
@@ -39,10 +43,7 @@ public class GADao {
         return users;
     }
 
-    public static Set<String> getCzrks() {
-        long count = gerCzrkCount();
-        int pageNum = (int) Math.ceil((double) count / (double) Conf.PAGESIZE);
-//                  pool = Executors.newFixedThreadPool(20);
+    public static Set<String> getCzrkWithSingleThread() {
         Set<String> users = new HashSet<>();
         DBCollection coll = MongoDBFactory.getCollection(MongoDB.DBNAME,
                 MongoDB.COLL_CZRK);
@@ -57,6 +58,30 @@ public class GADao {
             users.add((String) obj.get("gmsfhm"));
         }
         return users;
+    }
+
+    public static Set<String> getCzrksWithMultithread() {
+        long count = gerCzrkCount();
+        int pageCount = (int) Math.ceil((double) count / (double) Conf.PAGESIZE);
+        ExecutorService pool = Executors.newFixedThreadPool(10);
+
+        List<LoadCzrkWorker> workers = new ArrayList<>();
+        for (int i = 1; i <= pageCount; i++) {
+            LoadCzrkWorker dw = new LoadCzrkWorker(i, Conf.PAGESIZE);
+            workers.add(dw);
+        }
+
+        Set<String> data = new HashSet<>();
+        try {
+            List<Future<Set<String>>> result = pool.invokeAll(workers);
+            for (Future<Set<String>> future : result) {
+                data.addAll(future.get());
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        pool.shutdown();
+        return data;
     }
 
     public static void insertLgtrynb(List<Lgtrynb> list) {
