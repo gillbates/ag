@@ -27,9 +27,9 @@ public class ComputeThread implements Runnable {
 
     @Override
     public void run() {
-//        log.info("processing page:" + pageNum + "/" + totalPageCount);
+        log.info("processing page:" + pageNum + "/" + totalPageCount);
         Set<String> data = GADao.queryCzrk(pageNum, Conf.PAGESIZE);
-//        log.info(data.size() + " data loaded in page " + pageNum);
+        log.info(data.size() + " data loaded in page " + pageNum);
         Set<String> result = Sets.intersection(data, Util.getUsers());
         Util.addSet(result);
         log.info("page " + pageNum + " finished processing with " + result.size() + " data matched ...");

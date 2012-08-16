@@ -109,9 +109,9 @@ public class Test {
         Set<String> users = GADao.getLgtrynbs();
         log.info(users.size() + " zjhm found ...");
         Util.setUsers(users);
-        ExecutorService pool = Executors.newFixedThreadPool(5);
-        long czrkCount = GADao.gerCzrkCount();
 
+        long czrkCount = GADao.gerCzrkCount();
+        ExecutorService pool = Executors.newFixedThreadPool((int) czrkCount);
         int pageNum = (int) Math.ceil((double) czrkCount / (double) Conf.PAGESIZE);
         log.info("processing " + czrkCount + " Czrks in " + pageNum);
         for (int i = 1; i <= pageNum; i++) {
