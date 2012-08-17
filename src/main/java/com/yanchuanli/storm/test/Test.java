@@ -69,7 +69,12 @@ public class Test {
     public static void compareThreadedLoading() {
         log.info("started ...");
 
+
         Set<String> data1 = GADao.getCzrksWithMultithread();
+        log.info(data1.size() + " czrk loaded ...");
+
+        data1.clear();
+        data1 = GADao.getCzrkWithSingleThread();
         log.info(data1.size() + " czrk loaded ...");
 
     }
