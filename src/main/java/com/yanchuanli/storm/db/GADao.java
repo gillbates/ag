@@ -161,9 +161,9 @@ public class GADao {
                 MongoDB.COLL_CZRK);
 
         BasicDBObject query = new BasicDBObject();
-        BasicDBObject key = new BasicDBObject("gmsfhm", 1);
+//        BasicDBObject key = new BasicDBObject("gmsfhm", 1);
 
-        DBCursor cur = coll.find(query, key).skip((pageNow - 1) * pageSize).limit(pageSize);
+        DBCursor cur = coll.find(query).skip((pageNow - 1) * pageSize).limit(pageSize);
         while (cur.hasNext()) {
             DBObject obj = cur.next();
             users.add((String) obj.get("gmsfhm"));
