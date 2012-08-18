@@ -70,11 +70,11 @@ public class Test {
         log.info("started ...");
 
 
-        Set<String> data1 = GADao.getCzrksWithMultithread();
-        log.info(data1.size() + " czrk loaded ...");
+//        Set<String> data1 = GADao.getCzrksWithMultithread();
+//        log.info(data1.size() + " czrk loaded ...");
 
-        data1.clear();
-        data1 = GADao.getCzrkWithSingleThread();
+//        data1.clear();
+        Set<String> data1 = GADao.getCzrkWithSingleThread();
         log.info(data1.size() + " czrk loaded ...");
 
     }
