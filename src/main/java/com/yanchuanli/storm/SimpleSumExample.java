@@ -3,6 +3,7 @@ package com.yanchuanli.storm;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.utils.Utils;
 import org.apache.log4j.Logger;
 
 /**
@@ -20,12 +21,14 @@ public class SimpleSumExample {
         builder.setBolt("bolt", new SimpleBolt(), 5).shuffleGrouping("spout");
 
         Config conf = new Config();
-        conf.setDebug(true);
+        conf.setDebug(false);
         conf.setNumWorkers(10);
 
 
         LocalCluster cluster = new LocalCluster();
         cluster.submitTopology("test", conf, builder.createTopology());
-
+        Utils.sleep(10000);
+        cluster.killTopology("test");
+        cluster.shutdown();
     }
 }
