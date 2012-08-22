@@ -65,7 +65,8 @@ public class Test {
 //          insertLgtrynb();
 
 //        compareThreadedLoading();
-        insertRelation();
+//        insertRelation();
+        testInterSectionOfUserAndRelation();
     }
 
     public static void testInterSectionOfUserAndRelation() {
@@ -75,13 +76,15 @@ public class Test {
         long elapsedTime = endTime - startTime;
         elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
         log.info(elapsedTime + " milli passed ...");
+        startTime = System.nanoTime();
         Set<String> data2 = UserDao.getUsersWithMultithread();
         log.info(data1.size() + " users loaded ...");
         endTime = System.nanoTime();
         elapsedTime = endTime - startTime;
         elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
         log.info(elapsedTime + " milli passed ...");
-
+        startTime = System.nanoTime();
+        Set<String> result = Util.getInterSection(data1, data2);
 
     }
 
