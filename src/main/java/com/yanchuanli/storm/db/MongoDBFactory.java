@@ -22,10 +22,11 @@ public class MongoDBFactory {
                 ArrayList<ServerAddress> addr = new ArrayList<ServerAddress>();
                 for (String s : MONGO_HOST.split(",")) {
                     addr.add(new ServerAddress(s));
+                    logger.info(s);
                 }
                 mongo = new Mongo(addr);
-                mongo.setReadPreference(ReadPreference.SECONDARY);
-                mongo.setWriteConcern(WriteConcern.REPLICAS_SAFE);
+//                mongo.setReadPreference(ReadPreference.SECONDARY);
+//                mongo.setWriteConcern(WriteConcern.REPLICAS_SAFE);
             } catch (UnknownHostException | MongoException e) {
                 logger.error(e);
             }
