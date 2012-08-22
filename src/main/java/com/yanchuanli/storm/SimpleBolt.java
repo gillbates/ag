@@ -6,6 +6,7 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import org.apache.log4j.Logger;
 
 /**
  * Copyright Candou.com
@@ -15,6 +16,7 @@ import backtype.storm.tuple.Values;
  */
 public class SimpleBolt extends BaseBasicBolt {
 
+    private static Logger log = Logger.getLogger(SimpleBolt.class);
 
     @Override
     public void execute(Tuple tuple, BasicOutputCollector basicOutputCollector) {
@@ -22,6 +24,7 @@ public class SimpleBolt extends BaseBasicBolt {
         int b = tuple.getInteger(1);
         int c = a + b;
         basicOutputCollector.emit(new Values(c));
+        log.info(a + "+" + b + "=" + c);
     }
 
     @Override

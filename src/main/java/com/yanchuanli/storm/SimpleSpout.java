@@ -6,6 +6,7 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
+import org.apache.log4j.Logger;
 
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  */
 public class SimpleSpout extends BaseRichSpout {
 
+    private static Logger log = Logger.getLogger(SimpleSpout.class);
     private SpoutOutputCollector collector;
 
     @Override
@@ -32,5 +34,6 @@ public class SimpleSpout extends BaseRichSpout {
     @Override
     public void nextTuple() {
         collector.emit(new Values(1, 2));
+        log.info("Spout 1,2 emitted ...");
     }
 }
