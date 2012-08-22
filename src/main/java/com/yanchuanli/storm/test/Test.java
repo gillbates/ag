@@ -68,6 +68,22 @@ public class Test {
 //        insertRelation();
     }
 
+    public static void testInterSectionOfUserAndRelation() {
+        Set<String> data1 = RelationDao.getRelationsWithMultithread();
+        log.info(data1.size() + " relations loaded ...");
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+        elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
+        log.info(elapsedTime + " milli passed ...");
+        Set<String> data2 = UserDao.getUsersWithMultithread();
+        log.info(data1.size() + " users loaded ...");
+        endTime = System.nanoTime();
+        elapsedTime = endTime - startTime;
+        elapsedTime = TimeUnit.NANOSECONDS.toMillis(elapsedTime);
+        log.info(elapsedTime + " milli passed ...");
+
+
+    }
 
     public static void insertRelation() {
         for (int i = 0; i < 10000000; i++) {
