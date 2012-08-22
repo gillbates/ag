@@ -128,7 +128,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.yanchuanli.storm.test.SimpleSumExample</mainClass>
+                            <mainClass>com.yanchuanli.storm.test.Test</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
