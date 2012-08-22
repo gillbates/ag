@@ -29,6 +29,10 @@ public class Util {
         return result;
     }
 
+    public static void setResult(Set<String> result) {
+        Util.result = result;
+    }
+
     public static Set<String> getInterSection(Set<String> set1, Set<String> set2) {
         Set<String> a;
         Set<String> b;
