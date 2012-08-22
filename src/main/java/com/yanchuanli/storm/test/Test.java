@@ -56,7 +56,7 @@ public class Test {
 
 //        forkJoinCheck();
 //        sequentialCheck();
-        insertUsers();
+//        insertUsers();
 //        insertSourceUsers();
 //        multiThreadedCheck();
 
@@ -65,7 +65,7 @@ public class Test {
 //          insertLgtrynb();
 
 //        compareThreadedLoading();
-//        insertRelation();
+        insertRelation();
     }
 
     public static void testInterSectionOfUserAndRelation() {
