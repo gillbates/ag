@@ -11,8 +11,8 @@ public class MongoDB {
     public static final String COLL_CZRK = "czrk";
     public static final String COLL_Lgtrynb = "lgtrynb";
     public static final String SOURCE_USER = "sourceuser";
-	public static final String COLL_ROOM = "room";
-	public static final String COLL_ACTIVITY = "activity";
+	public static final String COLL_DEMOA = "demoa";
+	public static final String COLL_DEMOB = "demob";
 	public static final String COLL_FEEDBACK = "feedback";
 	public static final String COLL_VERSION = "ipaversion";
 	public static final String COLL_PRODUCT = "product";

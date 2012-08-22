@@ -1,15 +1,17 @@
 package com.yanchuanli.storm.test;
 
 import com.google.common.collect.Sets;
-import com.yanchuanli.storm.memory.Conf;
-import com.yanchuanli.storm.memory.Generator;
-import com.yanchuanli.storm.memory.Util;
 import com.yanchuanli.storm.concurrent.CheckInterSectionTask;
 import com.yanchuanli.storm.concurrent.ComputeThread;
 import com.yanchuanli.storm.db.GADao;
+import com.yanchuanli.storm.db.RelationDao;
 import com.yanchuanli.storm.db.UserDao;
+import com.yanchuanli.storm.memory.Conf;
+import com.yanchuanli.storm.memory.Generator;
+import com.yanchuanli.storm.memory.Util;
 import com.yanchuanli.storm.model.Czrk;
 import com.yanchuanli.storm.model.Lgtrynb;
+import com.yanchuanli.storm.model.Relation;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
@@ -62,9 +64,24 @@ public class Test {
 //        insertCzrk();
 //          insertLgtrynb();
 
-        compareThreadedLoading();
+//        compareThreadedLoading();
+        insertRelation();
     }
 
+
+    public static void insertRelation() {
+        for (int i = 0; i < 10000000; i++) {
+            long sfhma = basecount + i;
+
+            for (int j = 0; j < 20; j++) {
+                Relation r = new Relation(String.valueOf(sfhma), String.valueOf(sfhma + j));
+                RelationDao.insertRelation(r);
+            }
+            if (i % 1000 == 0) {
+                log.info(String.valueOf(i / 1000) + "/10000");
+            }
+        }
+    }
 
     public static void compareThreadedLoading() {
         log.info("started ...");

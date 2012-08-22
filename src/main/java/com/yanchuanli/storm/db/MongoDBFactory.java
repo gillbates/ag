@@ -9,8 +9,7 @@ import java.util.ArrayList;
 public class MongoDBFactory {
     protected static Logger logger = Logger.getLogger(MongoDBFactory.class);
 
-    public static final String MONGO_HOST = "192.168.1.166";
-    public static final int MONGO_PORT = 27017;
+    public static final String MONGO_HOST = "192.168.7.47:30000";
     private static Mongo mongo;
 
     private MongoDBFactory() {
@@ -19,9 +18,9 @@ public class MongoDBFactory {
     public static Mongo getMongo() {
         if (mongo == null) {
             try {
-                String url = "192.168.7.47:30000";
+
                 ArrayList<ServerAddress> addr = new ArrayList<ServerAddress>();
-                for (String s : url.split(",")) {
+                for (String s : MONGO_HOST.split(",")) {
                     addr.add(new ServerAddress(s));
                 }
                 mongo = new Mongo(addr);
