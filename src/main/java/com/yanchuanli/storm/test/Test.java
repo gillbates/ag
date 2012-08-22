@@ -85,6 +85,7 @@ public class Test {
         log.info(elapsedTime + " milli passed ...");
         startTime = System.nanoTime();
         Set<String> result = Util.getInterSection(data1, data2);
+        log.info(result.size()+" result matched ...");
 
     }
 
