@@ -15,6 +15,7 @@ import com.yanchuanli.storm.model.Relation;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -66,7 +67,37 @@ public class Test {
 
 //        compareThreadedLoading();
 //        insertRelation();
-        testInterSectionOfUserAndRelation();
+//        testInterSectionOfUserAndRelation();
+
+        testOracle();
+    }
+
+
+    public static void testOracle() {
+        Connection connection = null;
+        try {
+            // Load the JDBC driver
+            String driverName = "oracle.jdbc.driver.OracleDriver";
+            Class.forName(driverName);
+
+            // Create a connection to the database
+            String serverName = "172.16.7.41";
+            String portNumber = "1521";
+            String sid = "demo";
+            String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + sid;
+            String username = "dm";
+            String password = "dm";
+            connection = DriverManager.getConnection(url, username, password);
+            String template = "SELECT * FROM demo";
+            // registeredUser is the table you created in the databasefor registered users.
+            PreparedStatement pstmt = connection.prepareStatement(template);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                log.info(rs.getString("sfhma"));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            // Could not find the database driver
+        }
     }
 
     public static void testInterSectionOfUserAndRelation() {
@@ -85,7 +116,7 @@ public class Test {
         log.info(elapsedTime + " milli passed ...");
         startTime = System.nanoTime();
         Set<String> result = Util.getInterSection(data1, data2);
-        log.info(result.size()+" result matched ...");
+        log.info(result.size() + " result matched ...");
 
     }
 

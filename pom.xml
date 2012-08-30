@@ -30,6 +30,17 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>oracle</artifactId>
+            <version>11.2.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>1.8.M07</version>
+        </dependency>
 
         <dependency>
             <groupId>com.rabbitmq</groupId>
