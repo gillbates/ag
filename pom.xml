@@ -79,13 +79,13 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>storm</groupId>
-            <artifactId>storm</artifactId>
-            <version>0.8.0</version>
-            <!-- keep storm out of the jar-with-dependencies -->
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>storm</groupId>-->
+            <!--<artifactId>storm</artifactId>-->
+            <!--<version>0.8.0</version>-->
+            <!--&lt;!&ndash; keep storm out of the jar-with-dependencies &ndash;&gt;-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
 
         <dependency>
